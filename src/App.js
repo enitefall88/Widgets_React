@@ -16,8 +16,8 @@ let items = [
 
 function App() {
   return <div>
-<Accordion items={items}/>
-    </div>
+  <Accordion items={items}/>
+  </div>
 
 }
 
