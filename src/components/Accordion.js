@@ -1,5 +1,10 @@
 import React from "react"
 
-export default function Accordion () {
-  return <h1> Accordion</h1>
+
+
+export default function Accordion ({items}) {
+  let  listOfItems = items.map(item => {
+    return <li>{item.title}</li>
+  })
+  return <ul>{listOfItems} </ul>
 }
