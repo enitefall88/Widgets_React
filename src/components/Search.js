@@ -27,8 +27,15 @@ useEffect(() => {
   search()
 }, [searchTerm] )
 
-  let renderedList = results.map(el => {
-    return <div>{el.title}</div>
+  let renderedList = results.map((result, i) => {
+    return <div className="item" i={result.pageid}>
+      <div className="content">
+        <div className="header">
+        {result.title}
+        </div>
+        <span dangerouslySetInnerHTML={{ __html:result.snippet}}></span>
+        </div>
+    </div>
   })
 
   return <div>
@@ -38,7 +45,7 @@ useEffect(() => {
      <input value={searchTerm} onInput={(e) => onSearch(e.target.value)} className="input"/>
       </div>
  </div>
-    <div>
+    <div className="ui celled list">
       {renderedList}
     </div>
  </div>
