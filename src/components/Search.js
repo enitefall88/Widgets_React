@@ -24,7 +24,12 @@ useEffect(() => {
     })
   setResults(data.query.search)
   }
-  search()
+
+  let timeoutId = setTimeout(() => {
+    if (searchTerm) {
+      search()
+    }
+  }, 500)
 }, [searchTerm] )
 
   let renderedList = results.map((result, i) => {
