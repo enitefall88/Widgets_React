@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import axios from 'axios'
 
 let Search = () => {
@@ -30,7 +30,10 @@ useEffect(() => {
       search()
     }
   }, 500)
-}, [searchTerm] )
+  return () => {
+    clearTimeout(timeoutId)
+  }
+}, [searchTerm])
 
   let renderedList = results.map((result, i) => {
     return <div className="item" i={result.pageid}>
