@@ -4,12 +4,23 @@ import axios from 'axios'
 let Search = () => {
   let [searchTerm, setSearchTerm] = useState('haskell')
   let [results, setResults] = useState([])
+  let [debouncedTerm, setDebouncedTerm] = useState([searchTerm])
 
   console.log(results)
 
   let onSearch = (input) => {
     setSearchTerm(input)
   }
+
+  useEffect(() => {
+    let timerId = setTimeout(() => {
+      setDebouncedTerm(searchTerm)
+    }, 1000)
+
+    return () => {clearTimeout(timerId)
+    }
+    }, [searchTerm])
+
   useEffect(() => {
     let search = async () => {
 
@@ -19,26 +30,14 @@ let Search = () => {
           list: 'search',
           format: 'json',
           origin: '*',
-          srsearch: searchTerm
+          srsearch: debouncedTerm
         }
       })
       setResults(data.query.search)
     }
+search()
 
-    if (searchTerm && !results.length) {
-      search()
-    } else
-      {
-        let timeoutId = setTimeout(() => {
-          if (searchTerm) {
-            search()
-          }
-        }, 500)
-        return () => {
-          clearTimeout(timeoutId)
-        }
-      }
-    }, [searchTerm, results.length])
+    }, [debouncedTerm])
 
   let renderedList = results.map((result, i) => {
     return <div className="item" i={result.pageid}>
