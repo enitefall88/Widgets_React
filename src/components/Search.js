@@ -38,7 +38,7 @@ let Search = () => {
           clearTimeout(timeoutId)
         }
       }
-    }, [searchTerm])
+    }, [searchTerm, results.length])
 
   let renderedList = results.map((result, i) => {
     return <div className="item" i={result.pageid}>
