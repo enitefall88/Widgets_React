@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import axios from 'axios'
 
 let Search = () => {
-  let [searchTerm, setSearchTerm] = useState('haskell')
+  let [searchTerm, setSearchTerm] = useState('programming')
   let [results, setResults] = useState([])
   let [debouncedTerm, setDebouncedTerm] = useState([searchTerm])
 
@@ -34,9 +34,11 @@ let Search = () => {
         }
       })
       setResults(data.query.search)
-    }
-search()
 
+    }
+    if (debouncedTerm) {
+      search()
+      }
     }, [debouncedTerm])
 
   let renderedList = results.map((result, i) => {
