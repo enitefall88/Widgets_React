@@ -4,14 +4,21 @@ let Dropdown = ({options, onSelectedChange, selected}) => {
   let [open, setOpen] = useState(false)
   const ref = useRef()
 
-  useEffect(()=> {
-    document.body.addEventListener('click', (event) => {
-     if (ref.current && ref.current.contains(event.target)) {
-       return
-     }
-      setOpen(false)
-    }, {capture: true})
-  }, [])
+    useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.body.addEventListener("click", onBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true,
+      });
+    };
+  }, []);
 
   let renderedListOfOptions = options.map((option) => {
     if(option.value === selected.value) {
