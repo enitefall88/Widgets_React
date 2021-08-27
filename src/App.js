@@ -33,11 +33,15 @@ let options = [
 
 function App() {
   let [selected, setSelected] = useState(options[0])
+  let [showDropdown, setShowDropdown] = useState(true)
 
   return <div>
-  <Dropdown selected={selected}
+    <button onClick={() => setShowDropdown(!showDropdown)}>Toggle dropdown</button>
+    { showDropdown ?
+      <Dropdown selected={selected}
             onSelectedChange={setSelected}
-            options={options}/>
+            options={options}/> : null
+    }
   </div>
 
 }

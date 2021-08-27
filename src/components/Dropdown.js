@@ -6,7 +6,7 @@ let Dropdown = ({options, onSelectedChange, selected}) => {
 
   useEffect(()=> {
     document.body.addEventListener('click', (event) => {
-     if (ref.current.contains(event.target)) {
+     if (ref.current && ref.current.contains(event.target)) {
        return
      }
       setOpen(false)
