@@ -16,14 +16,20 @@ let options = [
   },
 ]
 
-export default function Translate() {
+export default function Translate({label}) {
   let [language, setLanguage] = useState(options[0])
+  let [text, setText] = useState('')
 
   return <div>
+    <input
+     value={text}
+     onInput={(event)=>{setText(event.target.value)}}
+    />
     <Dropdown
       options={options}
       selected={language}
       onSelectedChange={setLanguage}
+      label="Select a language"
     />
   </div>
 }
