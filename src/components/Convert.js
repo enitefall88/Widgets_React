@@ -1,8 +1,8 @@
-import React, { useState} from "react"
+import React, {useEffect, useState} from "react"
 import axios from 'axios'
 
 export default function Convert({language, text}) {
-  let [translated, setTranlsated] = useState('')
+  let [translated, setTranslated] = useState('')
 
   useEffect(() => {
     let doTranslation = async() => {
@@ -13,12 +13,13 @@ export default function Convert({language, text}) {
           key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'
         }
       })
-      setTranlsated(data.data.translations[0].translatedText)
-      doTranslation()
+      setTranslated(data.data.translations[0].translatedText)
     }
+    doTranslation()
   }, [language, text])
 
   return <div>
     {translated}
+
   </div>
 }
