@@ -62,6 +62,9 @@ let showTranslate = () => {
 function App() {
   return <div>
     {showAccordion()}
+    {showList()}
+    {showDropdown()}
+    {showTranslate()}
   </div>
 
 }
