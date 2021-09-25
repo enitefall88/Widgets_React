@@ -36,31 +36,6 @@ let options = [
   }
 ]
 
-let showAccordion = () => {
-  if (window.location.pathname === '/') {
-    return <Accordion items={items}/>
-  }
-}
-
-let showList = () => {
-  if (window.location.pathname === '/list') {
-    return <Search/>
-  }
-}
-
-let showDropdown = () => {
-  if (window.location.pathname === '/dropdown') {
-    return <Dropdown/>
-  }
-}
-
-let showTranslate = () => {
-  if (window.location.pathname === '/translate') {
-    return <Translate/>
-  }
-}
-
-
 function App() {
   let [selected, setSelected] = useState(options[0])
   return <div>
